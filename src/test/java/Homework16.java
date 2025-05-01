@@ -31,7 +31,7 @@ import java.time.Duration;
             registerLink.click();
 
             // Verify the redirected URL is the registration page
-            String expectedUrl = "https://qa.koel.app/registion";
+            String expectedUrl = "https://qa.koel.app/registration";
             String actualUrl = driver.getCurrentUrl();
 
             //Assert URL
