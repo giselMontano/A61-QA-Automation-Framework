@@ -34,7 +34,7 @@ import java.time.Duration;
             String expectedUrl = "https://qa.koel.app/registion";
             String actualUrl = driver.getCurrentUrl();
 
-            //Assert
+            //Assert URL
             Assert.assertEquals(actualUrl, expectedUrl);
 
             // Close browser
