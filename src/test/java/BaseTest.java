@@ -42,7 +42,7 @@ public class BaseTest {
 
     }
 
-    public void inputEmail(String Email) {
+    public void provideEmail(String Email) {
         //STEP-2
         WebElement email= driver.findElement(By.cssSelector("input[type='email']"));
         email.clear();
@@ -50,7 +50,8 @@ public class BaseTest {
 
     }
 
-    public void inputPassword(String Password) {
+
+    public void providePassword(String Password) {
         //STEP-3
         WebElement password= driver.findElement(By.cssSelector("input[type='password']"));
         password.clear();

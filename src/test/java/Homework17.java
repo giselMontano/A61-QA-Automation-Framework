@@ -1,10 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AddSong extends BaseTest {
+public class Homework17 extends BaseTest {
     /*Homework M6-L17 Framework: TestNG Overview
 1. Create a new branch named homework-17.
 2. Create a new file, Homework17.java in IntelliJ IDEA.
@@ -27,8 +26,8 @@ If they match, the assertion in your test will pass; otherwise, it will fail.
         //4. Navigate to "https://qa.koel.app/".
         //5. Log in with your credentials.
         navigateToSite();
-        inputEmail("gisel.montano-patino@testpro.io");
-        inputPassword("TestPro123");
+        provideEmail("gisel.montano-patino@testpro.io");
+        providePassword("TestPro123");
         loginButton();
 
         Thread.sleep(2000);
@@ -64,7 +63,7 @@ If they match, the assertion in your test will pass; otherwise, it will fail.
 
         //11. Verify that a notification message appears and contains the text, "Added 1 song into [Actual Playlist Name]".
     //Note: Please verify using the Assert.assertEquals() method to compare the actual notification message text with the expected text.
-        String notification = "Added 1 song into mix";
+        String notification = "Added 1 song into \"mix.\"";
         //THIS LINE IS RETRIEVING THE NEW "NAME" FIELD AGAIN
         WebElement messageInGreen = driver.findElement(By.cssSelector("div.success.show"));
         //"value"  Text inside input elements is stored in the value attribute

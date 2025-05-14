@@ -1,21 +1,16 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
 
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginValidEmailPassword() {
         navigateToSite();
-        inputEmail("gisel.montano-patino@testpro.io");
-        inputPassword("TestPro123");
+        provideEmail("gisel.montano-patino@testpro.io");
+        providePassword("TestPro123");
         loginButton();
 
         //STEP-5
@@ -29,8 +24,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void wrongPassword() {
         navigateToSite();
-        inputEmail("gisel.montano-patino@testpro.io");
-        inputPassword("testPro123");
+        provideEmail("montano-patino@testpro.io");
+        providePassword("testPro123");
         loginButton();
 
         //STEP-5 ASSERTIONS

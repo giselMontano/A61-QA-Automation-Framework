@@ -10,8 +10,8 @@ public class ChangeUserProfile extends BaseTest {
 
 
         navigateToSite();
-        inputEmail("gisel.montano-patino@testpro.io");
-        inputPassword("TestPro123");
+        provideEmail("gisel.montano-patino@testpro.io");
+        providePassword("TestPro123");
         loginButton();
 
         Thread.sleep(2000);
