@@ -25,7 +25,7 @@ If they match, the assertion in your test will pass; otherwise, it will fail.
    public void addSongToPlaylist() throws InterruptedException {
         //4. Navigate to "https://qa.koel.app/".
         //5. Log in with your credentials.
-        navigateToSite();
+        //navigateToSite();
         provideEmail("gisel.montano-patino@testpro.io");
         providePassword("TestPro123");
         loginButton();

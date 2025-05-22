@@ -8,7 +8,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPassword() {
-        navigateToSite();
+        //navigateToSite(); //WE DON NOT NEED IT ANYMORE BECAUSE OF THE PARAMETER IN XML FILE
         provideEmail("gisel.montano-patino@testpro.io");
         providePassword("TestPro123");
         loginButton();
@@ -23,7 +23,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void wrongPassword() {
-        navigateToSite();
+        //navigateToSite();
         provideEmail("montano-patino@testpro.io");
         providePassword("testPro123");
         loginButton();
@@ -36,4 +36,16 @@ public class LoginTests extends BaseTest {
 
 
     }
+    //LoginNegativeTestData
+    @Test (dataProvider = "LoginNegativeTestData")
+    public void LoginNegativeTestData(String email1, String password1) throws InterruptedException {
+        provideEmail(email1);//provideEmail->this method comes from BaseTest
+        providePassword(password1);//providePassword->this method comes from BaseTest
+        loginButton();//this method comes from BaseTest
+        Thread.sleep(2000);
+
+        String url= "https://qa.koel.app/";
+        Assert.assertEquals(driver.getCurrentUrl(),url);
+    }
+
 }

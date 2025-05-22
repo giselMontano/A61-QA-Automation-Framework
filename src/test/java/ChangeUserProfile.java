@@ -9,7 +9,7 @@ public class ChangeUserProfile extends BaseTest {
     public void userProfile() throws InterruptedException {
 
 
-        navigateToSite();
+        //navigateToSite();
         provideEmail("gisel.montano-patino@testpro.io");
         providePassword("TestPro123");
         loginButton();
@@ -23,14 +23,14 @@ public class ChangeUserProfile extends BaseTest {
         //Current Password
         provideCurrentPassword("TestPro123");
         //Name
-        provideName("alejandra");
+        provideName("Gisel");
 
         Thread.sleep(2000);
         //Save
         saveButton ();
 
 //ASSERTIONS TO SEE IF THE ACTUAL NAME HAS BEEN UPDATED FOR "student" to "alejandra" in this case LINE 26
-        String expectedUpdatedName = "alejandra";
+        String expectedUpdatedName = "Gisel";
         //THIS LINE IS RETRIEVING THE NEW "NAME" FIELD AGAIN
         WebElement updatedName = driver.findElement(By.id("inputProfileName"));
         //"value"  Text inside input elements is stored in the value attribute

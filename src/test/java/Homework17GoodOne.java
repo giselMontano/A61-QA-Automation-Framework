@@ -6,9 +6,9 @@ import org.testng.annotations.Test;
 public class Homework17GoodOne extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-//4. Navigate to "https://qa.koel.app/".
+        //4. Navigate to "https://qa.koel.app/".
         //5. Log in with your credentials.
-        navigateToSite();
+        //navigateToSite();
         provideEmail("gisel.montano-patino@testpro.io");
         providePassword("TestPro123");
         loginButton();
@@ -32,7 +32,7 @@ public class Homework17GoodOne extends BaseTest {
     }
 
     //6. Search for a song (choose any song of your choice).
-//we create a method that will send different song names into the search bar is interactive and not only set in stone
+    //we create a method that will send different song names into the search bar is interactive and not only set in stone
     public void searchSong(String name) throws InterruptedException {
         WebElement searchButton = driver.findElement(By.cssSelector("input[name='q']"));
         searchButton.sendKeys(name);
