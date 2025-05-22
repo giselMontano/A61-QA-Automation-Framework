@@ -43,7 +43,7 @@ Hint: Use the ＜methods＞ & ＜include＞ tags.
 
         //8. Navigate to "https://qa.koel.app/".
         //9. Log in with your credentials.
-        navigateToSite();
+        //navigateToSite();
         provideEmail("gisel.montano-patino@testpro.io");
         providePassword("TestPro123");
         loginButton();
@@ -53,6 +53,9 @@ Hint: Use the ＜methods＞ & ＜include＞ tags.
         playNextSong();
         Thread.sleep(2000);
         playButton();
+
+        //THIS IS ANOTHER WAY TO ASSERT WITH A METHOD
+        //Assert.assertTrue(isSongPlaying());
 
         //11. Validate that a song is playing by verifying if the sound bar, or the pause button is displayed.
         WebElement soundBar = driver.findElement(By.xpath("//img[@alt='Sound bars']"));
@@ -73,6 +76,11 @@ Hint: Use the ＜methods＞ & ＜include＞ tags.
         WebElement playBttn=  driver.findElement(By.xpath("//span[@title='Play or resume']/i"));
         playBttn.click();
         Thread.sleep(2000);
+    }
+    public boolean isSongPlaying(){
+        WebElement soundBar = driver.findElement(By.xpath("//img[@alt='Sound bars']"));
+        return soundBar.isDisplayed();
+
     }
 
 }

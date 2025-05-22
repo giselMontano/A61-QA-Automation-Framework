@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 
-public class Homework16 extends BaseTest {
+public class Homework16 {
     @Test
     public void registrationNavigation() {
 
