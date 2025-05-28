@@ -1,15 +1,23 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver;
+    ChromeOptions options = new ChromeOptions();
+    WebDriverWait wait;
+
+    //Fluent wait
+    //Wait fluentWait;
+
 
     @DataProvider(name = "LoginNegativeTestData")
     public Object[][] getDataFromDataProvider() {
@@ -37,10 +45,24 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //***We can get rid of this implicit wait because we have an explicit wait
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+
+        //EXPLICIT WAIT
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        //JUST AN EXAMPLE OF FLUENT WAIT
+       /* fluentWait = new FluentWait( driver)
+                //maximum time to wait before throwing an exception
+                .withTimeout(Duration.ofSeconds(10))
+                //Every 2 second will check if the element is visible or not
+                .pollingEvery(Duration.ofSeconds(2));*/
+
+
         navigateToSite(baseURL);//THIS IS FROM LINE 50// CALLING THE METHOD "navigateToSite"
     }
+
 
     @AfterMethod
     public void closeBrowser() {
@@ -56,7 +78,11 @@ public class BaseTest {
 
     public void provideEmail(String Email) {
         //STEP-2
-        WebElement email = driver.findElement(By.cssSelector("input[type='email']"));
+
+        //WebElement email = driver.findElement(By.cssSelector("input[type='email']"));
+        //***We change the wait, so it will wait until the element is visible
+        WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector("input[type='email']")));
         email.clear();
         email.sendKeys(Email);
 
@@ -65,14 +91,21 @@ public class BaseTest {
 
     public void providePassword(String Password) {
         //STEP-3
-        WebElement password = driver.findElement(By.cssSelector("input[type='password']"));
+
+        //WebElement password = driver.findElement(By.cssSelector("input[type='password']"));
+        //***We change the wait so it will wait until the element is visible
+        WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector("input[type='password']")));
         password.clear();
         password.sendKeys(Password);
     }
 
     public void loginButton() {
         //STEP-4
-        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        //WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        //***We change the wait so it will wait until the element is visible
+        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector("button[type='submit']")));
         loginButton.click();
     }
 }

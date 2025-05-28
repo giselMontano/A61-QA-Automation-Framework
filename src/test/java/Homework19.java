@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -32,8 +33,10 @@ Note: If the red button is not displayed, let's create a new playlist and click 
 12. Push your code to the remote repository.
 
 13. Create a pull request.*/
+
+    //*******HOMEWORK 20 CHANGING ALL Thread.sleep(2000); TO EXPLICIT WAITS********
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist()  {
         provideEmail("gisel.montano-patino@testpro.io");
         providePassword("TestPro123");
         loginButton();
@@ -47,23 +50,33 @@ Note: If the red button is not displayed, let's create a new playlist and click 
 
     }
 
-    private void deletePlst() throws InterruptedException {
-        WebElement playList = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
-        playList.click();
-        Thread.sleep(2000);
+    private void deletePlst()  {
+        //WebElement DplayList = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
+        //HOMEWORK 20 CHANGING ALL Thread.sleep(2000); TO EXPLICIT WAITS
+        WebElement DplayList = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//button[@class='del btn-delete-playlist']")));
+
+        DplayList.click();
+        //Thread.sleep(2000);
 
     }
 
-    private void selectPlaylist() throws InterruptedException {
-        WebElement playList = driver.findElement(By.xpath("//a[text() = 'rock']"));
-        playList.click();
-        Thread.sleep(2000);
+    private void selectPlaylist()  {
+        //WebElement SplayList = driver.findElement(By.xpath("//a[text() = 'rock']"));
+        //HOMEWORK 20 CHANGING ALL Thread.sleep(2000); TO EXPLICIT WAITS
+        WebElement SplayList = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//a[text() = 'rock']")));
+        SplayList.click();
+        //Thread.sleep(2000);
     }
 
     private Object notification() {
         //TO GET THE DISAPPEARING MESSAGE(TOAST MESSAGE) WE MUST STOP THE EXECUTION
         //DOM->sources->pause the execution
-        WebElement messageInGreen = driver.findElement(By.xpath("//div[@class='success show']"));
+        //WebElement messageInGreen = driver.findElement(By.xpath("//div[@class='success show']"));
+        //HOMEWORK 20 CHANGING ALL Thread.sleep(2000); TO EXPLICIT WAITS
+        WebElement messageInGreen = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//div[@class='success show']")));
         return messageInGreen.getText();
     }
 }
