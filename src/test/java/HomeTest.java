@@ -91,7 +91,7 @@ public class HomeTest extends BaseTest{
                         (By.cssSelector(".playlist:nth-child(3)")));
                 //(By.xpath("//a[contains(text(),'TEST')]")));
 
-        //actions comes from BASE TEST class
+        //actions comes from BASETEST class
         actions.doubleClick(doubleClick).perform();
     }
     public void newNamePlaylist()  {

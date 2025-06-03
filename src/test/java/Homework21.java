@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-//THIS IS ALREADY IN THE HomeTest CLASS 
+//THIS IS ALREADY IN THE HomeTest CLASS
 public class Homework21 extends BaseTest {
     //****************DOUBLE CLICK*********************
     //we need to declare the updated name here in order to use it in the code
