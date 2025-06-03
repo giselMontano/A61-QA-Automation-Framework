@@ -7,9 +7,14 @@
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
+            <class name="HomeTest"/>
             <class name="Homework16"/>
             <class name="ChangeUserProfile"/>
+<<<<<<< Updated upstream
             <class name="Homework17"/>
+=======
+            <class name="AllSongsTest"/>
+>>>>>>> Stashed changes
             <class name="Homework18"/>
             <class name="Homework17GoodOne"/>
             <class name="Homework19"/>
