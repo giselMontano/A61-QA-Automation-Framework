@@ -1,3 +1,4 @@
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,9 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 
-public class Homework16 {
+public class RegistrationTestPOM extends BaseTest{
+
+    //HOMEWORK 16
     @Test
     public void registrationNavigation() {
 
@@ -22,12 +25,12 @@ public class Homework16 {
 
 
         // Navigate to Koel QA site
-        String Url="https://qa.koel.app/";
+        String Url = "https://qa.koel.app/";
         driver.get(Url);
 
         // Click on the 'Register' link
         //WebElement registerLink = driver.findElement(By.cssSelector("a[href='registration'])"));
-        WebElement registerLink =driver.findElement(By.partialLinkText("Registration"));
+        WebElement registerLink = driver.findElement(By.partialLinkText("Registration"));
         registerLink.click();
 
         // Verify the redirected URL is the registration page
@@ -40,4 +43,19 @@ public class Homework16 {
         // Close browser
         driver.quit();
     }
+
+    //******************  REGISTRATION POM **************
+    @Test
+    public void registrationPOM() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.registration();
+
+        // Verify the redirected URL is the registration page
+        String expectedUrl = "https://qa.koel.app/registration";
+        String actualUrl = driver.getCurrentUrl();
+
+        //Assert URL
+        Assert.assertEquals(actualUrl, expectedUrl);
+    }
+
 }

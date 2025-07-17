@@ -16,6 +16,11 @@ public class BaseTest {
     // BECAUSE THE ASSERTION IS LOOKING FOR THE GREEN NOTIFICATION AND IT
     //DOES NOT APPEAR ANYMORE AFTER THE FIRST TIME
     public WebDriver driver;
+
+    //WE DO NOT NEED THIS ONE ANYMORE BECAUSE IT IS CREATED IN
+    // public void launchBrowser(String baseURL) {}
+    //WE COULD DELETE THIS ONE OR ENABLE IT AS WELL SINCE IT IS ALREADY DECLARED OPTIONS INSIDE THE
+    //public void launchBrowser(String baseURL) { BLOCK OF CODE
     ChromeOptions options = new ChromeOptions();
     WebDriverWait wait;
 
@@ -46,12 +51,13 @@ public class BaseTest {
     @Parameters({"BaseURL"})//WE COPY THE SAME NAME AS THE XML FILE"TestNG"-> parameter
     //      Added ChromeOptions argument below to fix websocket error
     public void launchBrowser(String baseURL) {
-    //Initiate the Chrome browser to open the browser
+        //Initiate the Chrome browser to open the browser
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //***We can get rid of this implicit wait because we have an explicit wait
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
 
         //EXPLICIT WAIT
@@ -64,7 +70,7 @@ public class BaseTest {
                 //Every 2 second will check if the element is visible or not
                 .pollingEvery(Duration.ofSeconds(2));*/
 
-         //this actions is declared in the beginner of this class
+        //this actions is declared in the beginner of this class
         actions = new Actions(driver);
 
 
@@ -85,41 +91,53 @@ public class BaseTest {
 
     public void provideEmail(String Email) {
         //STEP-2
-        WebElement email = driver.findElement(By.cssSelector("input[type='email']"));
+
+        //WebElement email = driver.findElement(By.cssSelector("input[type='email']"));
+        //***We change the wait, so it will wait until the element is visible
+        WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector("input[type='email']")));
         email.clear();
         email.sendKeys(Email);
 
-    }
 
+    }
 
     public void providePassword(String Password) {
         //STEP-3
-        WebElement password = driver.findElement(By.cssSelector("input[type='password']"));
+
+        //WebElement password = driver.findElement(By.cssSelector("input[type='password']"));
+        //***We change the wait so it will wait until the element is visible
+        WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector("input[type='password']")));
         password.clear();
         password.sendKeys(Password);
     }
 
     public void loginButton() {
         //STEP-4
-        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        //WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        //***We change the wait so it will wait until the element is visible
+        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector("button[type='submit']")));
         loginButton.click();
     }
 
 
     //---------HOVER OVER ACTION CLASS-----------
     //it needs to be WebElement because it returns a WEB ELEMENT
-   public WebElement hoverOver() {
+    public WebElement hoverOver() {
 
-       WebElement playResume = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-       //moveToElement--> hover over the element
-       actions.moveToElement(playResume).perform();
-       return wait.until(ExpectedConditions.visibilityOf(playResume));
-   }
-//VERIFICATION IS THE SONG IS PLAYING
+        WebElement playResume = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        //moveToElement--> hover over the element
+        actions.moveToElement(playResume).perform();
+        return wait.until(ExpectedConditions.visibilityOf(playResume));
+    }
+
+    //VERIFICATION IS THE SONG IS PLAYING
     public boolean isSongPlaying() {
         WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector("[data-testid= 'sound-bar-play']")));
-       return soundBar.isDisplayed();
+        return soundBar.isDisplayed();
 
 
     }

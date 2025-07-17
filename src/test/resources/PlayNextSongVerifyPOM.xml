@@ -2,13 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 
-<suite name="Homework18">
+<suite name="PlayNextSongVerifyPOM">
     <parameter name="BaseURL" value="https://qa.koel.app/"></parameter>
     <test name="playSong" preserve-order="false">
         <classes>
-            <class name="Homework18">
+            <class name="PlayNextSongVerifyPOM">
                 <methods>
                     <include name="playSong"/>
+                    <include name="playNextSongVerifyPOM"/>
                 </methods>
             </class>
         </classes>

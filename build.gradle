@@ -33,9 +33,9 @@ task RegressionTest(type: Test){
     }
 
 }
-task Homework18(type: Test){
+task PlayNextSongVerifyPOM(type: Test){
     useTestNG() {
-        suites "src/test/resources/Homework18.xml"
+        suites "src/test/resources/PlayNextSongVerifyPOM.xml"
     }
 
 }
