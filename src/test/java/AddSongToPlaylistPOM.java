@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class AddSongToPlaylistPOM extends BaseTest {
     @Test
     public void addSongToPlaylist() {
-        /*Homework M6-L17 Framework: TestNG Overview
+        /*HOMEWORK M6-L17 Framework: TestNG Overview
 1. Create a new branch named homework-17.
 
 2. Create a new file, Homework17.java in IntelliJ IDEA.
@@ -131,7 +131,7 @@ Note: Please verify using the Assert.assertEquals() method to compare the actual
         return messageInGreen.getText();
     }
 
-    //***************************** ADD SONG TO PLAYLIST POM *************************
+    //***************************** ADD SONG TO PLAYLIST [POM] *************************
     //FOR THIS EXCERSICE ONLY ONE TIME IS ALLOWED TO ADD SONG TO A PLAYLIST
     // IF YOU RUN IT TWICE IT WON'T WORK BECAUSE THE SONG IS ALREADY ADDED/ always check if the song has been added to the playlist
     @Test

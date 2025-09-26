@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 //All the methods and elements that belong to homepage will be stored here
 public class HomePage extends BasePage{
@@ -15,7 +16,8 @@ public class HomePage extends BasePage{
     By search = By.cssSelector("input[name='q']");
     By playNxtbttn = By.xpath("//i[@title='Play next song']");
     By playBttn =  By.xpath("//span[@title='Play or resume']/i");
-    By soundBar = By.xpath("//img[@alt='Sound bars']");
+    By allSongs =By.cssSelector("li a.songs");
+
     //Helper methods
     public WebElement getUserAvatar(){
     return  findElementWait(userAvatarIcon);
@@ -29,8 +31,13 @@ public class HomePage extends BasePage{
     public void playButton(){
         findElementWait(playBttn).click();
     }
-    public WebElement SoundBarPlay(){
-        return  findElementWait(soundBar);
+
+    public void clickAllSongs() {
+       findElementWait(allSongs).click();
 
     }
-}
+
+    }
+
+
+

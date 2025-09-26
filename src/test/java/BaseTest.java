@@ -123,7 +123,9 @@ public class BaseTest {
     }
 
 
-    //---------HOVER OVER ACTION CLASS-----------
+   /*            THIS METHOD HAS BEEN MOVED TO BsePage CONSTANTLY USE
+
+   //---------HOVER OVER ACTION CLASS-----------
     //it needs to be WebElement because it returns a WEB ELEMENT
     public WebElement hoverOver() {
 
@@ -131,7 +133,7 @@ public class BaseTest {
         //moveToElement--> hover over the element
         actions.moveToElement(playResume).perform();
         return wait.until(ExpectedConditions.visibilityOf(playResume));
-    }
+    }*/
 
     //VERIFICATION IS THE SONG IS PLAYING
     public boolean isSongPlaying() {

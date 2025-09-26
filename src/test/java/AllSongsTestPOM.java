@@ -1,10 +1,13 @@
+import Pages.AllSongsPage;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AllSongsTest extends BaseTest {
+public class AllSongsTestPOM extends BaseTest {
     /*
      *go to koel app
      * login
@@ -44,7 +47,7 @@ public class AllSongsTest extends BaseTest {
                 (By.cssSelector("li a.songs")));
         chooseAllSongs.click();
     }
-
+//RIGHT-CLICK ON THE FIRST SONG FROM /All Songs tab
     public void rightClickFirstSong() {
         WebElement firstSong = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
@@ -52,13 +55,30 @@ public class AllSongsTest extends BaseTest {
         actions.contextClick(firstSong).perform();
 
     }
-//CHICK FIRST SONG FROM RIGHT CLICK
+//CLICK PLAY ON THE FIRST SONG FROM RIGHT CLICK /All Songs tab
     public void choosePlayOption() {
         WebElement play1Song = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector("li.playback")));
         play1Song.click();
 
     }
+    //***************************** PLAY SONG  [POM] *************************
+    @Test
+    public void addSongToPlaylistPOM() {
+        LoginPage loginP = new LoginPage(driver);
+        HomePage homeP = new HomePage(driver);
+        AllSongsPage allSongs= new AllSongsPage(driver);
+        loginP.loginSetUpCredentials();
+        //choose all songs(it is in the homepage of the website)
+        homeP.clickAllSongs();
+        //RIGHT CLICK/it belongs to the new tab opened All songs
+        allSongs.rightClickFirstSong();
+        //All songs tab/PLAY
+        allSongs.choosePlayOption();
 
+        //* verify that song is playing//THIS METHOD IS ALREADY CREATED IN HOME PAGE BECAUSE
+        // YOU CAN VERIFY IN THE FIRST TAB AND CAN BE SEEN NO MATTER HOW MANY TABS YOU OPEN
+        Assert.assertTrue(isSongPlaying());
 
+    }
 }

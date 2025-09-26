@@ -44,7 +44,7 @@ public class RegistrationTestPOM extends BaseTest{
         driver.quit();
     }
 
-    //******************  REGISTRATION POM **************
+    //******************  REGISTRATION [POM] **************
     @Test
     public void registrationPOM() {
         LoginPage loginPage = new LoginPage(driver);

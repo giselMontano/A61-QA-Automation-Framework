@@ -1,3 +1,6 @@
+import Pages.BasePage;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,7 +12,7 @@ import org.testng.asserts.Assertion;
 
 import java.util.List;
 
-public class HomeTest extends BaseTest{
+public class HomeTest extends BaseTest {
     //---------HOVER OVER -----------
     @Test
     public void hoverOverPlaying() throws InterruptedException {
@@ -24,8 +27,13 @@ public class HomeTest extends BaseTest{
         //without this wait it does not work
         Thread.sleep(2000);
 
-     //VERIFICATION IS THE SONG IS PLAYING
-        Assert.assertTrue(hoverOver().isDisplayed());
+        //VERIFICATION IS THE SONG IS PLAYING
+
+
+        /*THIS NEXT PART WILL NOT WORK BECAUSE WE MOVED THE hoverOver() METHOD FROM BaseTest TO BasePage
+        * look at POM AT THE END OF THE PAGE TO UNDERSTAND HOW TO USE IT NOW*/
+
+        //Assert.assertTrue(hoverOver().isDisplayed());
 
     }
 
@@ -145,7 +153,7 @@ public class HomeTest extends BaseTest{
     }
 
     //THIS METHOD IS GETTING THE TEXT/STRING OF EACH SONG
-   //INSTEAD OF ONLY THE VALUE/SIZE OR NUMBER OF SONGS PRESENT IN THE PLAYLIST
+    //INSTEAD OF ONLY THE VALUE/SIZE OR NUMBER OF SONGS PRESENT IN THE PLAYLIST
     public void displayAllSongs() {
         List<WebElement> SongList = driver.findElements
                 (By.xpath("//section[@id='playlistWrapper']//table/tr"));
@@ -154,4 +162,46 @@ public class HomeTest extends BaseTest{
             System.out.println("LIST WEB-ELEMENTS " + e.getText());
         }
     }
+
+    //***************************** HOVER OVER PLAYING [POM] *************************
+    @Test
+    public void hoverOverPlayingPOM() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.loginSetUpCredentials();
+
+        //For this we need to call homePage since is inheritance the base page, or we can also call the
+        //BasePage baseP= new BasePage(driver); but it is usually use the homepage
+        Assert.assertTrue(homePage.hoverOver().isDisplayed());
+
+
+    }
+    //***************************** HOMEWORK 22 [POM] *************************
+
+    @Test
+    public void renamePlaylistPOM() {
+        //Login
+        provideEmail("gisel.montano-patino@testpro.io");
+        providePassword("TestPro123");
+        loginButton();
+        //We only use Thread.sleep in case we need to see how the app is working in a slower pace
+        // Thread.sleep(2000);
+
+        //Choose-playlist and double click
+        doubleClickPlaylist();
+        // Thread.sleep(2000);
+
+        //Change name
+        updatedName = "HELLO";
+        newNamePlaylist();
+        // Thread.sleep(2000);
+
+        //Assert new name has been updated
+        String expectedNewName = "Updated playlist \"HELLO.\"";
+        Assert.assertEquals(getUpdatedNameSuccessMSG(), expectedNewName);
+
+
+    }
+
+
 }

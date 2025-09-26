@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class PlayNextSongVerifyPOM extends BaseTest {
     /*
 
-1. Create a new branch named homework-18.
+1. Create a new branch named HOMEWORK-18.
 
 2. Create a new file, Homework18.java in IntelliJ IDEA.
 
@@ -96,7 +96,7 @@ Hint: Use the ＜methods＞ & ＜include＞ tags.
 
     }
 
-    //************  CLICK «Play next song» AND VERIFY *************
+    //************  CLICK «Play next song» AND VERIFY [POM] *************
    @Test
     public void playNextSongVerifyPOM(){
        // 8/9

@@ -15,4 +15,5 @@ public class PlaylistPage extends BasePage{
     public void choosePlaylist(){
         findElementWait(playList).click();
     }
+
 }

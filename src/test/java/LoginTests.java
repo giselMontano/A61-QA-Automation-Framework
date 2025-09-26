@@ -1,3 +1,4 @@
+import PageFactory.LoginPageFactory;
 import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.By;
@@ -11,7 +12,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPassword() {
-        //navigateToSite(); //WE DON NOT NEED IT ANYMORE BECAUSE OF THE PARAMETER IN XML FILE
+        //navigateToSite(); //WE DON NOT NEED IT ANY MORE BECAUSE OF THE PARAMETER IN XML FILE
         provideEmail("gisel.montano-patino@testpro.io");
         providePassword("TestPro123");
         loginButton();
@@ -73,7 +74,8 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-    //**********************  LOG IN POM  *************************************
+
+    //**********************  LOG IN [POM]  *************************************
     //Login test using Page ObjectModel
     @Test
     public void positiveLoginTestPOM() {
@@ -96,7 +98,8 @@ public class LoginTests extends BaseTest {
 
     }
 
-    //************ This is POM APPROACH to test different cases with DATA PROVIDER ********************
+
+    //************ This is [POM] APPROACH to test different cases with DATA PROVIDER ********************
     @Test(dataProvider = "LoginNegativeTestData")
     public void negativeLoginTestsPOM(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
@@ -106,6 +109,23 @@ public class LoginTests extends BaseTest {
 
         String url = "https://qa.koel.app/";
         Assert.assertEquals(driver.getCurrentUrl(), url);
+
     }
+
+        //************ This is PAGE FACTORY APPROACH  ********************
+    @Test
+    public void positiveLoginTestPAGEFACTORY() {
+        //Objects
+        LoginPageFactory loginPageFactory = new LoginPageFactory(driver);
+        HomePage homePage = new HomePage(driver);
+        //Steps
+        //SMOOTH FLOW CALLING ONLY ONE TIME loginPageFactory
+        loginPageFactory.provideEmail("montano-patino@testpro.io")
+                .providePassword("testPro123")
+                .clickLogin();
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        }
+
+
 }
 
