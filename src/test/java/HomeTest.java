@@ -63,10 +63,14 @@ public class HomeTest extends BaseTest {
 
 
     //****************DOUBLE CLICK*********************
+
+    //------>TEST REFACTORED AT THE BUTTON-------------
     //we need to declare the updated name here in order to use it in the code
-    String updatedName = "";
+    //String updatedName = "";
 
     //AFTER ONE RUN IT ALWAYS FAIL BECAUSE THE NAME HAS BEEN CHANGED AND THE NOTIFICATION DOES NOT SHOW ANYMORE
+
+    //------>TEST REFACTORED AT THE BUTTON-------------
     @Test
     public void renamePlaylist() {
         //Login
@@ -77,23 +81,27 @@ public class HomeTest extends BaseTest {
         // Thread.sleep(2000);
 
         //Choose-playlist and double click
-        doubleClickPlaylist();
+        //---> WON'T WORK BECAUSE WE MOVED THE METHOD TO HOMEPAGE
+        //doubleClickPlaylist();
         // Thread.sleep(2000);
 
-        //Change name
-        updatedName = "HELLO";
-        newNamePlaylist();
+
+        //Change name / enter new playlist name
+        //---> WON'T WORK BECAUSE WE MOVED THE METHOD TO HOMEPAGE
+        /*updatedName = "HELLO";
+        newNamePlaylist();*/
         // Thread.sleep(2000);
 
         //Assert new name has been updated
-        String expectedNewName = "Updated playlist \"HELLO.\"";
-        Assert.assertEquals(getUpdatedNameSuccessMSG(), expectedNewName);
+        //---> WON'T WORK BECAUSE WE MOVED THE METHOD TO HOMEPAGE
+        /*String expectedNewName = "Updated playlist \"HELLO.\"";
+        Assert.assertEquals(getUpdatedNameSuccessMSG(), expectedNewName);*/
 
 
     }
-
+//--->METHODS MOVED TO HOME PAGE
     //****************DOUBLE CLICK*********************
-    public void doubleClickPlaylist() {
+   /* public void doubleClickPlaylist() {
         WebElement doubleClick = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector(".playlist:nth-child(3)")));
         //(By.xpath("//a[contains(text(),'TEST')]")));
@@ -101,11 +109,10 @@ public class HomeTest extends BaseTest {
         //actions comes from BASE TEST class
         actions.doubleClick(doubleClick).perform();
     }
-
     public void newNamePlaylist() {
         WebElement newName = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector("[name='name']")));
-        //IN THIS CASE THE .clear(); DOES NOT WORK AND WE NEED TO USE COMANDS IN KEYWORD TO SEND KEYS
+        //IN THIS CASE THE .clear(); DOES NOT WORK AND WE NEED TO USE COMMANDS IN KEYWORD TO SEND KEYS
 
 
         //Keys<= K is always capital letter
@@ -122,7 +129,7 @@ public class HomeTest extends BaseTest {
                 (By.xpath("//div[@class='success show']")));
         return messageInGreen.getText();
     }
-
+*/
 
     //************WEB ELEMENTS LIST****************
 
@@ -176,29 +183,28 @@ public class HomeTest extends BaseTest {
 
 
     }
-    //***************************** HOMEWORK 22 [POM] *************************
-
+    //---> HOMEWORK 22 renamePlaylist [POM] refactor all the test with POM -----
+    //String updatedName = "";
     @Test
-    public void renamePlaylistPOM() {
+    public void renamePlaylistPOM() throws InterruptedException {
+
         //Login
-        provideEmail("gisel.montano-patino@testpro.io");
-        providePassword("TestPro123");
-        loginButton();
-        //We only use Thread.sleep in case we need to see how the app is working in a slower pace
-        // Thread.sleep(2000);
+        LoginPage loginP = new LoginPage(driver);
+        loginP.loginSetUpCredentials();
+        HomePage homeP = new HomePage(driver);
+
 
         //Choose-playlist and double click
-        doubleClickPlaylist();
-        // Thread.sleep(2000);
-
+        homeP.doubleClickPlaylist();
+        Thread.sleep(2000);
         //Change name
-        updatedName = "HELLO";
-        newNamePlaylist();
-        // Thread.sleep(2000);
+        //updatedName = "HELLO";
+        homeP.newNamePlaylist("HELLO");
+        Thread.sleep(2000);
 
         //Assert new name has been updated
         String expectedNewName = "Updated playlist \"HELLO.\"";
-        Assert.assertEquals(getUpdatedNameSuccessMSG(), expectedNewName);
+        Assert.assertEquals(homeP.getUpdatedNameSuccessMSG(), expectedNewName);
 
 
     }

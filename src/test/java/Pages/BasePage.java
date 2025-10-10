@@ -17,6 +17,9 @@ public class BasePage {
     By soundBar = By.xpath("//img[@alt='Sound bars']");
     By hoverOvr = By.cssSelector("[data-testid='play-btn']");
 
+    By soundBarPY = By.cssSelector("[data-testid= 'sound-bar-play']");
+
+
     //INITIALIZING
     public BasePage (WebDriver GivenDriver){
         driver= GivenDriver;
@@ -34,6 +37,12 @@ public class BasePage {
         return  findElementWait(soundBar);
 
     }
+    //VERIFICATION IS THE SONG IS PLAYING
+    public boolean isSongPlaying() {
+        //WebElement soundBarPYl = wait.until(ExpectedConditions.visibilityOfElementLocated
+        //return soundBarPY.isDisplayed();
+        return findElementWait (soundBarPY).isDisplayed();
+    }
 
     //---------HOVER OVER ACTION CLASS-----------
     //it needs to be WebElement because it returns a WEB ELEMENT
@@ -44,4 +53,5 @@ public class BasePage {
         actions.moveToElement(playResume).perform();
         return wait.until(ExpectedConditions.visibilityOf(playResume));
     }
+
 }

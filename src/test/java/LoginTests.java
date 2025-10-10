@@ -120,8 +120,8 @@ public class LoginTests extends BaseTest {
         HomePage homePage = new HomePage(driver);
         //Steps
         //SMOOTH FLOW CALLING ONLY ONE TIME loginPageFactory
-        loginPageFactory.provideEmail("montano-patino@testpro.io")
-                .providePassword("testPro123")
+        loginPageFactory.provideEmail("gisel.montano-patino@testpro.io")
+                .providePassword("TestPro123")
                 .clickLogin();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
         }

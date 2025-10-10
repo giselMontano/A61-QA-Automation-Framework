@@ -11,6 +11,8 @@ public class LoginPageFactory extends BasePage {
     }
 
     //Page Factory Elements
+
+
     @FindBy( css = "input[type='email']")
     WebElement emailField;
 
@@ -25,6 +27,8 @@ public class LoginPageFactory extends BasePage {
 
 
 //Helper Methods
+
+
     //Change void for object with the same name (LoginPageFactory) to make a smooth flow and add return this;
     //this way will help to use all of these methods by calling LoginPageFactory only once and adding the rest to it
     public LoginPageFactory provideEmail (String email){

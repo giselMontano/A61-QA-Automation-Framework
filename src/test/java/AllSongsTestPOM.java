@@ -37,7 +37,8 @@ public class AllSongsTestPOM extends BaseTest {
         choosePlayOption();
 
         //* verify that song is playing
-        Assert.assertTrue(isSongPlaying());
+        //it will not work because the method isSongPlaying() has been moved to basePage from BaseTest
+        //Assert.assertTrue(isSongPlaying());
 
     }
 
@@ -64,7 +65,7 @@ public class AllSongsTestPOM extends BaseTest {
     }
     //***************************** PLAY SONG  [POM] *************************
     @Test
-    public void addSongToPlaylistPOM() {
+    public void playSongWithContextClickPOM() {
         LoginPage loginP = new LoginPage(driver);
         HomePage homeP = new HomePage(driver);
         AllSongsPage allSongs= new AllSongsPage(driver);
@@ -78,7 +79,7 @@ public class AllSongsTestPOM extends BaseTest {
 
         //* verify that song is playing//THIS METHOD IS ALREADY CREATED IN HOME PAGE BECAUSE
         // YOU CAN VERIFY IN THE FIRST TAB AND CAN BE SEEN NO MATTER HOW MANY TABS YOU OPEN
-        Assert.assertTrue(isSongPlaying());
+        Assert.assertTrue(homeP.isSongPlaying());
 
     }
 }

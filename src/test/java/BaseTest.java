@@ -123,7 +123,7 @@ public class BaseTest {
     }
 
 
-   /*            THIS METHOD HAS BEEN MOVED TO BsePage CONSTANTLY USE
+   /*            THIS METHODS HAVE BEEN MOVED TO BasePage CONSTANTLY USE
 
    //---------HOVER OVER ACTION CLASS-----------
     //it needs to be WebElement because it returns a WEB ELEMENT
@@ -135,12 +135,12 @@ public class BaseTest {
         return wait.until(ExpectedConditions.visibilityOf(playResume));
     }*/
 
-    //VERIFICATION IS THE SONG IS PLAYING
+   /* //VERIFICATION IS THE SONG IS PLAYING
     public boolean isSongPlaying() {
         WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector("[data-testid= 'sound-bar-play']")));
         return soundBar.isDisplayed();
 
 
-    }
+    }*/
 }
