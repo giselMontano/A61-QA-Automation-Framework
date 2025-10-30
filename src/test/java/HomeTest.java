@@ -1,3 +1,5 @@
+import PageFactory.HomePageFactory;
+import PageFactory.LoginPageFactory;
 import Pages.BasePage;
 import Pages.HomePage;
 import Pages.LoginPage;
@@ -31,7 +33,7 @@ public class HomeTest extends BaseTest {
 
 
         /*THIS NEXT PART WILL NOT WORK BECAUSE WE MOVED THE hoverOver() METHOD FROM BaseTest TO BasePage
-        * look at POM AT THE END OF THE PAGE TO UNDERSTAND HOW TO USE IT NOW*/
+         * look at POM AT THE END OF THE PAGE TO UNDERSTAND HOW TO USE IT NOW*/
 
         //Assert.assertTrue(hoverOver().isDisplayed());
 
@@ -183,6 +185,7 @@ public class HomeTest extends BaseTest {
 
 
     }
+
     //---> HOMEWORK 22 renamePlaylist [POM] refactor all the test with POM -----
     //String updatedName = "";
     @Test
@@ -199,15 +202,39 @@ public class HomeTest extends BaseTest {
         Thread.sleep(2000);
         //Change name
         //updatedName = "HELLO";
-        homeP.newNamePlaylist("HELLO");
+        homeP.newNamePlaylist("HELLO8");
         Thread.sleep(2000);
 
         //Assert new name has been updated
-        String expectedNewName = "Updated playlist \"HELLO.\"";
+        String expectedNewName = "Updated playlist \"HELLO8.\"";
         Assert.assertEquals(homeP.getUpdatedNameSuccessMSG(), expectedNewName);
 
 
     }
+    //***************************** RENAME PLAYING [PAGE FACTORY] *************************
+    @Test
+    public void renamePlaylistPAGEFACTORY() throws InterruptedException {
+        //Objects
+        LoginPageFactory loginPageFactory = new LoginPageFactory(driver);
+        HomePageFactory homePageFactory = new HomePageFactory(driver);
 
 
+        //Steps
+        //SMOOTH FLOW CALLING ONLY ONE TIME loginPageFactory
+        loginPageFactory.provideEmail("gisel.montano-patino@testpro.io")
+                .providePassword("TestPro123")
+                .clickLogin();
+        //THERE IS NOT ENOUGH TIME FOR EXECUTION AND THAT IS THE REASON I NEEDED SO MANY TIME SLEEPS
+        Thread.sleep(2000);
+        homePageFactory.doubleClick();
+
+        homePageFactory.newNamePlaylist("helloPageFactory1");
+        Thread.sleep(2000);
+
+        //this line of expectedNewName MUST BE LIKE THIS THAT IS THE FORMAT OF GREEN MESSAGE
+        String expectedNewName = "Updated playlist \"helloPageFactory1.\"";
+        Assert.assertEquals(homePageFactory.getUpdatedNameSuccessMSG(), expectedNewName);
+
+
+    }
 }

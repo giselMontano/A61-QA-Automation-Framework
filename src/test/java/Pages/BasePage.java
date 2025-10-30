@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
-    WebDriver driver;
-    WebDriverWait wait;
-    Actions actions;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
     By soundBar = By.xpath("//img[@alt='Sound bars']");
     By hoverOvr = By.cssSelector("[data-testid='play-btn']");
 
@@ -28,9 +28,13 @@ public class BasePage {
         PageFactory.initElements(driver,this);
     }
 
-    //THIS PART WILL WAIT FOR ELEMENTS TO BE VISIBLE
+    //THIS PART WILL WAIT FOR ELEMENTS TO BE VISIBLE-->POM
     public WebElement findElementWait(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    //THIS PART WILL WAIT FOR WEB-ELEMENTS TO BE VISIBLE-->PAGE FACTORY
+    public WebElement findElementWait(WebElement element){
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public WebElement SoundBarPlay(){

@@ -27,6 +27,8 @@ public class HomePage extends BasePage{
 
     By messageInGreen = By.xpath("//div[@class='success show']");
 
+
+
     //Helper methods
     public WebElement getUserAvatar(){
     return  findElementWait(userAvatarIcon);
@@ -61,9 +63,8 @@ public class HomePage extends BasePage{
         // BECAUSE WE NEED TO USE THE LOCATOR FOUND WITH OTHER KEYS LIKE-> SENDKEYS SO IT NEEDS TO BE STORED IN A ELEMENT TO BE USED EASY
         WebElement newNamePL = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (newName));
+
         //IN THIS CASE THE .clear(); DOES NOT WORK AND WE NEED TO USE COMMANDS IN KEYWORD TO SEND KEYS
-
-
         //Keys<= K is always capital letter
         //👉 COMMAND,"A" --> "Select All" (highlights all text inside the input field)
         //BACK_SPACE  --> 👉 Deletes the entire selected text.

@@ -11,6 +11,7 @@
             <class name="RegistrationTestPOM"/>
             <class name="ChangeUserProfile"/>
 
+
             <class name="AllSongsTestPOM"/>
             <class name="PlayNextSongVerifyPOM"/>
             <class name="AddSongToPlaylistPOM"/>
