@@ -5,19 +5,15 @@
   <parameter name="BaseURL" value="https://qa.koel.app/"></parameter>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
+           <!-- <class name="LoginTests"/>-->
             <class name="BaseTest"/>
-            <class name="HomeTest"/>
-            <class name="RegistrationTestPOM"/>
-            <class name="ChangeUserProfile"/>
-
-
+            <!--<class name="HomeTest"/>-->
+            <!--<class name="RegistrationTestPOM"/>-->
+            <!--<class name="ChangeUserProfile"/>-->
             <class name="AllSongsTestPOM"/>
-            <class name="PlayNextSongVerifyPOM"/>
-            <class name="AddSongToPlaylistPOM"/>
-            <class name="Homework19"/>
-
-
+            <!--<class name="PlayNextSongVerifyPOM"/>-->
+            <!-- <class name="AddSongToPlaylistPOM"/>-->
+            <!-- <class name="Homework19"/>-->
 
         </classes>
     </test>

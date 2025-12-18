@@ -113,6 +113,8 @@ public class LoginTests extends BaseTest {
     }
 
         //************ This is PAGE FACTORY APPROACH  ********************
+
+    //TEST FOR CHROME-FIREFOX-SAFARI
     @Test
     public void positiveLoginTestPAGEFACTORY() {
         //Objects
