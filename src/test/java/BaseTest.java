@@ -135,10 +135,10 @@ public class BaseTest {
     }
 
     //======================LAMBDATEST=======================
+    //This will run depending your resources or TestNG.XML that you are running
     public WebDriver lambdaTest() throws MalformedURLException{
         String hubUrl = "https://hub.lambdatest.com/wd/hub";
-
-
+        
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
         browserOptions.setBrowserVersion("122.0");
