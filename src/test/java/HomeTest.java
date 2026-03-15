@@ -1,16 +1,12 @@
 import PageFactory.HomePageFactory;
 import PageFactory.LoginPageFactory;
-import Pages.BasePage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 
 import java.util.List;
 
@@ -221,9 +217,9 @@ public class HomeTest extends BaseTest {
 
         //Steps
         //SMOOTH FLOW CALLING ONLY ONE TIME loginPageFactory
-        loginPageFactory.provideEmail("gisel.montano-patino@testpro.io")
-                .providePassword("TestPro123")
-                .clickLogin();
+        loginPageFactory.provideEmailPF("gisel.montano-patino@testpro.io")
+                .providePasswordPF("TestPro123")
+                .clickLoginPF();
         //THERE IS NOT ENOUGH TIME FOR EXECUTION AND THAT IS THE REASON I NEEDED SO MANY TIME SLEEPS
         Thread.sleep(2000);
         homePageFactory.doubleClick();

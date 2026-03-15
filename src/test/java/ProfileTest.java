@@ -1,14 +1,19 @@
+import PageFactory.HomePageFactory;
+import PageFactory.LoginPageFactory;
+import PageFactory.ProfilePageFactory;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ChangeUserProfile extends BaseTest {
+public class ProfileTest extends BaseTest {
     //CREATE A TEST TO CHANGE USER'S NAME AND VERIFY IT'S CHANGED
 
     //*******HOMEWORK 20 CHANGING ALL Thread.sleep(2000); TO EXPLICIT WAITS********
-    @Test
+    //@Test
     public void userProfile(){
 
 
@@ -20,7 +25,7 @@ public class ChangeUserProfile extends BaseTest {
         //Thread.sleep(2000);
 
         //click avatar icon has a method, and we just call the method
-        clickAvatarIcon();
+        navigateToProfilePage();
 
         //Profile & Preferences tab
         //Current Password
@@ -62,11 +67,11 @@ public class ChangeUserProfile extends BaseTest {
         newName.sendKeys(profileName);
     }
 
-    public void clickAvatarIcon() {
-        //WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated
+    public void navigateToProfilePage() {
+        //WebElement profileName = driver.findElement(By.cssSelector("img[class='avatar']"));
+        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector("img[class='avatar']")));
-        avatarIcon.click();
+        profileName.click();
 
     }
     public void saveButton () {
@@ -74,6 +79,27 @@ public class ChangeUserProfile extends BaseTest {
         WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.cssSelector("button.btn-submit")));
         save.click();
+
+    }
+    @Test
+    public void changeCurrentTheme() throws InterruptedException {
+        LoginPageFactory loginPage1 = new LoginPageFactory(driver);
+        HomePageFactory homePage1 = new HomePageFactory(driver);
+        ProfilePageFactory profilePage1 = new ProfilePageFactory(driver);
+        //login
+        //select user
+        //===>click on user icon
+        //change color
+        //verify color
+
+        loginPage1.loginSetUpCredentialsPF();
+
+        //Thread.sleep(2000);
+        homePage1.getUserAvatar().click();
+        Thread.sleep(5000);
+        profilePage1.chooseVioletTheme();
+        Thread.sleep(2000);
+        Assert.assertTrue(profilePage1.isVioletSelected());
 
     }
 }

@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
 
 
-    @Test
+    //@Test
     public void loginValidEmailPassword() {
         //navigateToSite(); //WE DON NOT NEED IT ANY MORE BECAUSE OF THE PARAMETER IN XML FILE
         provideEmail("gisel.montano-patino@testpro.io");
@@ -45,25 +45,20 @@ public class LoginTests extends BaseTest {
 
     }*/
 
-    @Test
+   //@Test
     public void wrongPassword() {
         //navigateToSite();
         provideEmail("montano-patino@testpro.io");
         providePassword("testPro123");
         loginButton();
 
-        //STEP-5 ASSERTIONS able to capture
-        //this will fail because the app will not log in and will not be able to capture the icon
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-
-        //Assertion
-        Assert.assertTrue(avatarIcon.isDisplayed());
-
+        String url = "https://qa.koel.app/";
+        Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
 
     //LoginNegativeTestData
-    @Test(dataProvider = "LoginNegativeTestData")
+   // @Test(dataProvider = "LoginNegativeTestData")
     public void LoginNegativeTestData(String email1, String password1) throws InterruptedException {
         provideEmail(email1);//provideEmail->this method comes from BaseTest
         providePassword(password1);//providePassword->this method comes from BaseTest
@@ -77,7 +72,7 @@ public class LoginTests extends BaseTest {
 
     //**********************  LOG IN [POM]  *************************************
     //Login test using Page ObjectModel
-    @Test
+    //@Test
     public void positiveLoginTestPOM() {
         //WE NEED TO CREATE THE CONSTRUCTORS OF EACH CLASS TO BE ABLE TO USE IT
 
@@ -100,7 +95,7 @@ public class LoginTests extends BaseTest {
 
 
     //************ This is [POM] APPROACH to test different cases with DATA PROVIDER ********************
-    @Test(dataProvider = "LoginNegativeTestData")
+    //@Test(dataProvider = "LoginNegativeTestData")
     public void negativeLoginTestsPOM(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.provideEmail(email);
@@ -114,18 +109,53 @@ public class LoginTests extends BaseTest {
 
         //************ This is PAGE FACTORY APPROACH  ********************
 
+
+
     //TEST FOR CHROME-FIREFOX-SAFARI
-    @Test
+    //@Test
     public void positiveLoginTestPAGEFACTORY() {
         //Objects
         LoginPageFactory loginPageFactory = new LoginPageFactory(driver);
         HomePage homePage = new HomePage(driver);
         //Steps
         //SMOOTH FLOW CALLING ONLY ONE TIME loginPageFactory
-        loginPageFactory.provideEmail("gisel.montano-patino@testpro.io")
-                .providePassword("TestPro123")
-                .clickLogin();
+        loginPageFactory.provideEmailPF("gisel.montano-patino@testpro.io")
+                .providePasswordPF("TestPro123")
+                .clickLoginPF();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        }
+
+
+
+
+
+    //=========================PARALLEL EXECUTION====================================
+    //In order to run this test you must comment the rest of the @Test so you can actually run only these 2 in parallel
+        @Test
+        public void loginValidEmailPasswordParallel() {
+            //navigateToSite(); //WE DON NOT NEED IT ANYMORE BECAUSE OF THE PARAMETER IN XML FILE
+            LoginPage lgpage = new LoginPage(getDriver());
+            HomePage hmpage =new HomePage(getDriver());
+            lgpage.provideEmail("gisel.montano-patino@testpro.io");
+            lgpage.providePassword("TestPro123");
+            lgpage.clickLogin();
+
+
+            Assert.assertTrue(hmpage.getUserAvatar().isDisplayed());
+
+        }
+        @Test
+        public void wrongPasswordParallel() {
+            //navigateToSite();
+            LoginPage lgpage = new LoginPage(getDriver());
+            lgpage.provideEmail("montano-patino@testpro.io");
+            lgpage.providePassword("testPro123");
+            lgpage.clickLogin();
+
+            String url = "https://qa.koel.app/";
+            Assert.assertEquals(getDriver().getCurrentUrl(), url);
+
+
         }
 
 

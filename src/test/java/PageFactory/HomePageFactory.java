@@ -21,6 +21,9 @@ public class HomePageFactory extends BasePage {
     @FindBy (xpath = "//div[@class='success show']")
     WebElement greenMessagePF;
 
+    @FindBy (css = "img[class='avatar']")
+    WebElement userAvatarIcon;
+
 
     //Helper Methods
     public HomePageFactory doubleClick (){
@@ -52,6 +55,9 @@ public class HomePageFactory extends BasePage {
         // WebElement messageInGreenSccss = wait.until(ExpectedConditions.visibilityOfElementLocated
         //  (messageInGreen));
         return greenMessagePF.getText();
+    }
+    public WebElement getUserAvatar(){
+        return  findElementWait(userAvatarIcon);
     }
 
 

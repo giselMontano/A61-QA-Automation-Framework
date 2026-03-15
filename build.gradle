@@ -40,3 +40,10 @@ task PlayNextSongVerifyPOM(type: Test){
     }
 
 }
+task ParallelTesting(type: Test){
+    useTestNG() {
+        suites "src/test/resources/ParallelTesting.xml"
+    }
+
+}
+

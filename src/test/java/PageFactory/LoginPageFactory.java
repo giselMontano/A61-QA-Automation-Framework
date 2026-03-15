@@ -31,28 +31,28 @@ public class LoginPageFactory extends BasePage {
 
     //Change void for object with the same name (LoginPageFactory) to make a smooth flow and add return this;
     //this way will help to use all of these methods by calling LoginPageFactory only once and adding the rest to it
-    public LoginPageFactory provideEmail (String email){
+    public LoginPageFactory provideEmailPF(String email){
         emailField.sendKeys(email);
         return this;
     }
-    public LoginPageFactory providePassword (String password){
+    public LoginPageFactory providePasswordPF(String password){
         passwordField.sendKeys(password);
         return this;
     }
-    public LoginPageFactory clickLogin (){
+    public LoginPageFactory clickLoginPF(){
         submitButton.click();
         return this;
     }
-    public LoginPageFactory loginSetUpCredentials (){
-        provideEmail ("gisel.montano-patino@testpro.io");
-        providePassword("TestPro123");
-        clickLogin();
+    public LoginPageFactory loginSetUpCredentialsPF(){
+        provideEmailPF("gisel.montano-patino@testpro.io");
+        providePasswordPF("TestPro123");
+        clickLoginPF();
         return this;
 
     }
 
     //REGISTRATION
-    public LoginPageFactory registration (){
+    public LoginPageFactory registrationPF(){
         registration.click();
         return this;
     }

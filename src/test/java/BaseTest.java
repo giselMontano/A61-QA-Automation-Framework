@@ -17,7 +17,9 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
     //NOTE: USUALLY AFTER ONE RUN MOST OF THIS TEST CASES FAIL
@@ -36,6 +38,9 @@ public class BaseTest {
     //Wait fluentWait;
 
     Actions actions;
+
+    //=====PARALLEL EXECUTION======
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
 
     @DataProvider(name = "LoginNegativeTestData")
@@ -60,11 +65,35 @@ public class BaseTest {
 
         //-----SAFARI SETUP------
         //WebDriverManager.safaridriver().setup();
+
     }
+    //=====PARALLEL EXECUTION======
+    public static WebDriver getDriver(){
+        return threadDriver.get();
+    }
+
 
     @BeforeMethod
     @Parameters({"BaseURL"})//WE COPY THE SAME NAME AS THE XML FILE"TestNG"-> parameter
     //      Added ChromeOptions argument below to fix websocket error
+
+
+    //=====PARALLEL EXECUTION======
+    public void SetBrowser(String baseURL) throws MalformedURLException {
+        //driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+
+        //We use getDriver instead of Driver in this part because of recent method threadDriver.get(); for parallel execution
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        getDriver().manage().window().maximize();
+        //=====PARALLEL EXECUTION======
+        //we must change it in navigate to side as well to get driver...
+        // public void navigateToSite(String url) {  getDriver().get(url);
+        navigateToSite(baseURL);
+
+    }
+
+
     public void launchBrowser(String baseURL) throws MalformedURLException {
         //Initiate the Chrome browser to open the browser
         //ChromeOptions options = new ChromeOptions();--> we do not need this line since is static up in this class
@@ -102,9 +131,39 @@ public class BaseTest {
 
 
         navigateToSite(baseURL);//THIS IS FROM LINE 81// CALLING THE METHOD "navigateToSite"
+
     }
 
+    //======================LAMBDATEST=======================
+    public WebDriver lambdaTest() throws MalformedURLException{
+        String hubUrl = "https://hub.lambdatest.com/wd/hub";
+
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("122.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "giselalesita");
+        ltOptions.put("accessKey", "LT_5mgKU41WWjzCHk3FgitvQG05id4xHymdS2QLQ9uf4ERWHRs");
+        ltOptions.put("build", "Selenium 4");
+        ltOptions.put("name", this.getClass().getName());
+        ltOptions.put("platformName", "Windows 10");
+        ltOptions.put("seCdp", true);
+        ltOptions.put("selenium-version", "4.0.0");
+        browserOptions.setCapability("LT:Options", ltOptions);
+
+
+        driver = new RemoteWebDriver(new URL(hubUrl), browserOptions);
+        return driver;
+    }
+
+
+    //=====PARALLEL EXECUTION======
     @AfterMethod
+    public void tearDown(){
+        threadDriver.get().close();
+        threadDriver.remove();
+    }
     public void closeBrowser() {
         driver.quit();
     }
@@ -113,6 +172,9 @@ public class BaseTest {
         //STEP-1
         //String url = "https://qa.koel.app/";
         driver.get(url);
+
+        //=====PARALLEL EXECUTION======
+        getDriver().get(url);
 
     }
 
@@ -178,7 +240,7 @@ public class BaseTest {
     //----> % gradle clean test -Dbrowser=MicrosoftEdge(THIS DOES NOT WORK IN MY MAC)
     // /======> % gradle clean test -Dbrowser  -->IN THIS CASE NOT SPECIFY BROWSER IT WILL RUN DEFAULT WHICH IS CHROME
 
-    public static WebDriver pickBrowser(String browserName) throws MalformedURLException {
+    public WebDriver pickBrowser(String browserName) throws MalformedURLException {
         DesiredCapabilities caps =new DesiredCapabilities();
         String gridURL ="http://192.168.86.45:4444";
         switch (browserName){
@@ -209,6 +271,10 @@ public class BaseTest {
             case"grid-chrome":
                 caps.setCapability("browserName","chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+
+                //-----------LAMBDATEST------------------------
+            case "cloud":
+                return lambdaTest();
 
             default:
                 WebDriverManager.chromedriver().setup();
