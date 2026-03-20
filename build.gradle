@@ -18,6 +18,7 @@ dependencies {
 test {
     useTestNG() {
         suites "src/test/resources/${project.findProperty('suite') ?: 'TestNG'}.xml"
+        useDefaultListeners = true
     }
         ////${suite} this is for JENKINS----- before it was TestNG.xml
         systemProperty "browser", System.getProperty("browser", "Firefox")
