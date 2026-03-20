@@ -252,8 +252,12 @@ public class BaseTest {
                 return driver= new SafariDriver();
 
                 //FOR SOME REASON MicrosoftEdge BROWSER DOES NOT WORK IN MY MAC
-            case "MicrosoftEdge":
+            /*case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver(edgeOptions);*/
+            case "MicrosoftEdge":
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
                 return driver = new EdgeDriver(edgeOptions);
