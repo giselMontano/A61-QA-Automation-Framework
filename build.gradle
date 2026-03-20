@@ -21,7 +21,7 @@ test {
         useDefaultListeners = true
     }
         ////${suite} this is for JENKINS----- before it was TestNG.xml
-        systemProperty "browser", System.getProperty("browser", "Firefox")
+        systemProperty "browser", System.getProperty("browser", "chrome")
 
     reports {
         junitXml.required = true
