@@ -17,13 +17,18 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/${suite}.xml"
-        ////${suite} this is for ------JENKINS----- before it was TestNG.xml
-        systemProperty "browser", System.getProperty("browser")
+        suites "src/test/resources/${project.findProperty('suite') ?: 'TestNG'}.xml"
     }
+        ////${suite} this is for JENKINS----- before it was TestNG.xml
+        systemProperty "browser", System.getProperty("browser", "Firefox")
 
+    reports {
+        junitXml.required = true
+        html.required = true
+    }
 }
-task testSmoke(type: Test){
+
+/*task testSmoke(type: Test){
     useTestNG() {
         suites "src/test/resources/SmokeTest.xml"
     }
@@ -47,4 +52,4 @@ task ParallelTesting(type: Test){
     }
 
 }
-
+*/
