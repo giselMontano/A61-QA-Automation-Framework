@@ -6,16 +6,16 @@
     <test name="Example Test" preserve-order="false">
         <classes>
             <!--<class name="LoginTestParallel"/>-->
-           <class name="LoginTests"/>
-            <!--<class name="BaseTest"/>-->
+            <!--<class name="LoginTests"/>-->
+            <class name="BaseTest"/>
             <!--<class name="HomeTest"/>-->
             <!--<class name="RegistrationTestPOM"/>-->
-            <class name="ProfileTest"/>
+            <!--<class name="ProfileTest"/>-->
             <!--<class name="AllSongsTestPOM"/>-->
            <!--<class name="PlayNextSongVerifyPOM"/>-->
             <!-- <class name="AddSongToPlaylistPOM"/>-->
             <!-- <class name="Homework19"/>-->
-
-        </classes>
-    </test>
+            <class name= "CucumberRunner"/>
+       </classes>
+   </test>
 </suite>
